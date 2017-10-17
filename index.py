@@ -38,13 +38,13 @@ def task_add_cheak():
             return False
 
     if (subject == ''):
-        return template('error')
+        return template('task_add_error')
     elif (contents == ''):
-        return template('error')
+        return template('task_add_error')
     elif (checkDate(dead_line_year, dead_line_month, dead_line_day) != True):
-        return template('error')
+        return template('task_add_error')
     else:
-        return 'NONO'
+        return template('task_add_check')
 
 
 #@route('/task/add')
