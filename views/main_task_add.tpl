@@ -1,4 +1,5 @@
 % rebase('main.tpl', title='時間割表')
+% if message != '':
 
 <script type="text/javascript">
 
@@ -10,7 +11,7 @@
   } );
 
 </script>
-
+{{message}}
 <div class="container">
 
   <h3>課題追加</h3>
