@@ -11,7 +11,7 @@
   } );
 
 </script>
-{{message}}
+{{!base}}
 <div class="container">
 
   <h3>課題追加</h3>
