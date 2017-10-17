@@ -1,11 +1,14 @@
 % rebase('main.tpl', title='時間割表')
 % if message != '':
+<<<<<<< HEAD
 <div class="alert alert-warning alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>エラー</strong>
   {{message}}
 </div>
 % end
+=======
+>>>>>>> c2d60e7a675b01c33032721250b6853ecbab30a6
 
 <script type="text/javascript">
 
@@ -17,7 +20,11 @@
   } );
 
 </script>
+<<<<<<< HEAD
 <br>
+=======
+{{!base}}
+>>>>>>> c2d60e7a675b01c33032721250b6853ecbab30a6
 <div class="container">
 
   <h3>課題追加</h3>

@@ -26,6 +26,7 @@ def task_add():
 
     # 入力値判定
     if (subject == ''):
+<<<<<<< HEAD
         return template('main_task_add', message='不正な値です!!')
     elif (contents == ''):
         return template('main_task_add', message='不正な値です!!')
@@ -43,6 +44,40 @@ def time_table_view():
 
 
 
+=======
+        return template('task_add_error')
+    elif (contents == ''):
+        return template('task_add_error')
+    elif (checkDate(dead_line_year, dead_line_month, dead_line_day) != True):
+        return template('task_add_error')
+    else:
+        return template('task_add_check')
+
+
+#@route('/task/add')
+
+
+#
+# @route('/hello')
+# def hello():
+#     return "Hello World!"
+#
+# @route('/hello/<user>')
+# def hello(user="taro"):
+#     return "Hello {user}".format(user=user)
+#
+# @route('/test')
+# def test():
+#     return '''
+#     <html>
+#         <head></head>
+#         <body>
+#             <a href="http://www.google.co.jp">Google</a>
+#         </body>
+#     </html>
+#     '''
+#
+>>>>>>> c2d60e7a675b01c33032721250b6853ecbab30a6
 
 @route('/hello/<name>')
 def hello_test(name="trompot"):
