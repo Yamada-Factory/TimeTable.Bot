@@ -1,5 +1,5 @@
 % rebase('main.tpl', title='時間割表')
-
+<br>
 <div class="container">
   <h3>課題追加</h3>
   <p>教科<br>内容</p>

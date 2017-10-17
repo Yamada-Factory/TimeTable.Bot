@@ -1,9 +1,12 @@
-% rebase('main.tpl', title='エラー')
-
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <strong>エラー</strong><br>
-  <p>不正な操作です!!</p>
-</div>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>エラー</title>
+</head>
+<body>
+  <div style="width: 100%; font-size: 40px; font-weight: bold; text-align: center;">
+    404 Not Found!
+  </div>
+</body>
+</html>

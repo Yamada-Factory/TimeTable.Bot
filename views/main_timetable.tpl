@@ -1,4 +1,5 @@
 % rebase('main.tpl', title='時間割表')
+
 <div>
 <table class="table table-striped">
 		<tr>
@@ -11,5 +12,3 @@
 
 	</table>
 </div>
-
-%end

@@ -1,4 +1,11 @@
 % rebase('main.tpl', title='時間割表')
+% if message != '':
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>エラー</strong>
+  {{message}}
+</div>
+% end
 
 <script type="text/javascript">
 
@@ -10,12 +17,12 @@
   } );
 
 </script>
-
+<br>
 <div class="container">
 
   <h3>課題追加</h3>
 
-  <form method="post" action="/task/add/check">
+  <form method="post" action="/task/add">
     <div class="form-group">
 
       <label for="comment">教科</label><br>
