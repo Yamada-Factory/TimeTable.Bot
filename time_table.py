@@ -98,7 +98,7 @@ def get_event(date):
     return []
 
 
-# 要求された日付以降にあるイベントを返す(list<list<string>>)
+# 要求された日付以降にあるイベントを返す(list<list<Event>>)
 # なければ空リスト
 def get_event_list(date):
     event_list = get_event_list_all()
@@ -109,7 +109,7 @@ def get_event_list(date):
     return out_list
 
 
-# event.csv内にある全てのイベントのdict<日付:string, list<string>>を返す
+# event.csv内にある全てのイベントのdict<日付:string, list<Event>>を返す
 # なければ空dict
 def get_event_list_all():
     with open(fs.EVENT, 'r') as f:
@@ -117,9 +117,9 @@ def get_event_list_all():
         event_list = dict()
         for row in reader:
             if row[0] in event_list:
-                event_list[row[0]].append(row[1])
+                event_list[row[0]].append(Event(row[0], row[1]))
             else:
-                event_list[row[0]] = [row[1]]
+                event_list[row[0]] = Event(row[0], row[1])
         return event_list
 
 
@@ -137,6 +137,8 @@ def get_time_table_change_all():
         return change_list
 
 
+# 時間割変更をcsvに追記する
+# 成功ならTrueを返す
 def add_time_table_change(date, time, subject):
     if not check_date(date):
         return False
@@ -162,6 +164,8 @@ def add_time_table_change(date, time, subject):
     return True
 
 
+# イベントをcsvに追記する
+# 成功ならTrueを返す
 def add_event(date, event):
     if not check_date(date):
         return False
@@ -185,6 +189,8 @@ def add_event(date, event):
     return True
 
 
+# 課題をcsvに追記する
+# 成功ならTrueを返す
 def add_task(date, subject, value):
     if not check_date(date):
         return False
@@ -214,6 +220,7 @@ def add_task(date, subject, value):
 # def delete_event(date, event):
 # def delete_task(date, subject, value):
 
+# 時間割リストを文字列に変換する
 def time_table_string(time_table):
     if time_table is None:
         return '日付が不正です'
@@ -230,46 +237,53 @@ def time_table_string(time_table):
     return out
 
 
+# 課題を文字列に変換する
 def task_string(data):
     if len(data) == 0:
         return 'なし'
     out = ''
     for e in data:
-        out += e.subject+' '+e.value
+        out += e.subject+' '+e.value+'\n'
     return out
 
 
+# 課題リストを文字列に変換する
 def task_list_string(data):
     if len(data) == 0:
         return 'なし'
     out = ''
     for e in data:
+        out += e[0].date+' '
         for t in e:
             out += t.subject+' '+t.value+' '
         out += '\n'
     return out
 
 
+# イベントを文字列に変換する
 def event_string(data):
     if len(data) == 0:
         return 'なし'
     out = ''
     for e in data:
-        out += e.subject+' '+e.value
+        out += e.value+'\n'
     return out
 
 
+# イベントリストを文字列に変換する
 def event_list_string(data):
     if len(data) == 0:
         return 'なし'
     out = ''
     for e in data:
+        out += e[0].date+' '
         for t in e:
             out += t+' '
         out += '\n'
     return out
 
 
+# 引数の日付の正当性を確かめる
 def check_date(date):
     try:
         datetime.datetime.strptime(date, '%Y/%m/%d')
@@ -278,7 +292,8 @@ def check_date(date):
         print("誤った日付です")
         return False
 
-
+# 今日や明日などの文字列を日付に変換する
+# すでに日付ならばそのまま返す
 def get_date(str):
     if str == '今日':
         return datetime.datetime.today().strftime('%Y/%m/%d')
@@ -287,6 +302,7 @@ def get_date(str):
     if str == '明後日':
         return (datetime.datetime.today() + datetime.timedelta(days=2)).strftime('%Y/%m/%d')
     return str
+
 
 class Task:
     def __init__(self, date, subject, value):
@@ -319,3 +335,8 @@ class Change:
 
     def get_list(self):
         return [self.time, self.subject]
+
+class Event:
+    def __init__(self, date, event):
+        self.date = date
+        self.event = event
