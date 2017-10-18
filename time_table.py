@@ -1,5 +1,5 @@
 import csv
-from datetime import datetime
+import datetime
 import setting as fs
 
 
@@ -8,7 +8,7 @@ import setting as fs
 # 休みなどで時間割がなければ空リストを返す
 def get_time_table(date):
     try:
-        input_date = datetime.strptime(date, '%Y/%m/%d')
+        input_date = datetime.datetime.strptime(date, '%Y/%m/%d')
     except ValueError:
         print("誤った日付です")
         return None
@@ -138,12 +138,14 @@ def get_time_table_change_all():
 
 
 def add_time_table_change(date, time, subject):
+    if not check_date(date):
+        return False
     table_change = get_time_table_change_all()
     change = Change(date, time, subject)
     if date in table_change:
         for e in table_change[date]:
             if e == change:
-                return
+                return False
         table_change[date].append(change)
     else:
         table_change[date] = [change]
@@ -157,14 +159,17 @@ def add_time_table_change(date, time, subject):
     with open(fs.CHANGE, 'w') as f:
         writer = csv.writer(f)
         writer.writerows(out)
+    return True
 
 
 def add_event(date, event):
+    if not check_date(date):
+        return False
     event_list = get_event_list_all()
     if date in event_list:
         for e in event_list[date]:
             if e == event:
-                return
+                return False
         event_list[date].append(event)
     else:
         event_list[date] = [event]
@@ -177,15 +182,18 @@ def add_event(date, event):
     with open(fs.EVENT, 'w') as f:
         writer = csv.writer(f)
         writer.writerows(out)
+    return True
 
 
 def add_task(date, subject, value):
+    if not check_date(date):
+        return False
     task_list = get_task_list_all()
     task = Task(date, subject, value)
     if date in task_list:
         for e in task_list[date]:
             if e == task:
-                return
+                return False
         task_list[date].append(task)
     else:
         task_list[date] = [task]
@@ -198,6 +206,7 @@ def add_task(date, subject, value):
     with open(fs.TASK, 'w') as f:
         writer = csv.writer(f)
         writer.writerows(out)
+    return True
 
 
 # 未実装
@@ -221,14 +230,63 @@ def time_table_string(time_table):
     return out
 
 
+def task_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = ''
+    for e in data:
+        out += e.subject+' '+e.value
+    return out
+
+
+def task_list_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = ''
+    for e in data:
+        for t in e:
+            out += t.subject+' '+t.value+' '
+        out += '\n'
+    return out
+
+
+def event_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = ''
+    for e in data:
+        out += e.subject+' '+e.value
+    return out
+
+
+def event_list_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = ''
+    for e in data:
+        for t in e:
+            out += t+' '
+        out += '\n'
+    return out
+
+
 def check_date(date):
     try:
-        datetime.strptime(date, '%Y/%m/%d')
+        datetime.datetime.strptime(date, '%Y/%m/%d')
         return True
     except ValueError:
         print("誤った日付です")
         return False
 
+
+def get_date(str):
+    if str == '今日':
+        return datetime.datetime.today().strftime('%Y/%m/%d')
+    if str == '明日':
+        return (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%Y/%m/%d')
+    if str == '明後日':
+        return (datetime.datetime.today() + datetime.timedelta(days=2)).strftime('%Y/%m/%d')
+    return str
 
 class Task:
     def __init__(self, date, subject, value):
