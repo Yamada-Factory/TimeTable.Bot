@@ -85,7 +85,7 @@ def get_task_list_all():
             if row[0] in task_list:
                 task_list[row[0]].append(Task(row[0], row[1], row[2]))
             else:
-                task_list[row[0]] = [(row[0], row[1], row[2])]
+                task_list[row[0]] = [Task(row[0], row[1], row[2])]
         return task_list
 
 
