@@ -44,6 +44,8 @@ def get_time_table(date):
     if table_event == '休み':
         return []
     elif table_event != '':
+        if table_event not in week:
+            return []
         week_point = week[table_event]
 
     for e in change:
