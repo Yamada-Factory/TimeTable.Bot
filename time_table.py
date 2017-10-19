@@ -83,6 +83,8 @@ def get_task_list_all():
         reader = csv.reader(f)
         task_list = dict()
         for row in reader:
+            if len(row) < 3:
+                continue
             if row[0] in task_list:
                 task_list[row[0]].append(Task(row[0], row[1], row[2]))
             else:
@@ -117,6 +119,8 @@ def get_event_list_all():
         reader = csv.reader(f)
         event_list = dict()
         for row in reader:
+            if len(row) < 2:
+                continue
             if row[0] in event_list:
                 event_list[row[0]].append(Event(row[0], row[1]))
             else:
@@ -131,6 +135,8 @@ def get_time_table_change_all():
         reader = csv.reader(f)
         change_list = dict()
         for row in reader:
+            if len(row) < 3:
+                continue
             if row[0] in change_list:
                 change_list[row[0]].append(Change(row[0], row[1], row[2]))
             else:
@@ -173,16 +179,16 @@ def add_event(date, event):
     event_list = get_event_list_all()
     if date in event_list:
         for e in event_list[date]:
-            if e == event:
+            if e.event == event:
                 return False
-        event_list[date].append(event)
+        event_list[date].append(Event(date, event))
     else:
-        event_list[date] = [event]
+        event_list[date] = [Event(date, event)]
 
     out = list()
     for key, value in event_list.items():
         for e in value:
-            out.append([key, e])
+            out.append([key, e.event])
 
     with open(fs.EVENT, 'w') as f:
         writer = csv.writer(f)
