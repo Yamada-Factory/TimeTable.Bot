@@ -31,21 +31,22 @@ def get_time_table(date):
 
     week = {'月曜': 0, '火曜': 1, '水曜': 2, '木曜': 3, '金曜': 4}
     table_event = ''
+    # if '休み' in event_list:
+    #     table_event = '休み'
+
     for e in event_list:
-        if e == '休み':
+        if e.event == '休み':
             table_event = e
             break
         for d in week.keys():
-            if e == d:
-                table_event = e
+            if e.event == d:
+                table_event = e.event
                 break
     week_point = input_date.weekday()
 
-    if table_event == '休み':
+    if table_event == '休み' or week_point >= 5:
         return []
     elif table_event != '':
-        if table_event not in week:
-            return []
         week_point = week[table_event]
 
     for e in change:
@@ -89,7 +90,7 @@ def get_task_list_all():
         return task_list
 
 
-# 要求された日付にあるイベントを返す(list<string>)
+# 要求された日付にあるイベントを返す(list<Event>)
 # なければ空リスト
 def get_event(date):
     event_list = get_event_list_all()
