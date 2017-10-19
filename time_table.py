@@ -120,7 +120,7 @@ def get_event_list_all():
             if row[0] in event_list:
                 event_list[row[0]].append(Event(row[0], row[1]))
             else:
-                event_list[row[0]] = Event(row[0], row[1])
+                event_list[row[0]] = [Event(row[0], row[1])]
         return event_list
 
 
@@ -134,7 +134,7 @@ def get_time_table_change_all():
             if row[0] in change_list:
                 change_list[row[0]].append(Change(row[0], row[1], row[2]))
             else:
-                change_list[row[0]] = Change(row[0], row[1], row[2])
+                change_list[row[0]] = [Change(row[0], row[1], row[2])]
         return change_list
 
 
