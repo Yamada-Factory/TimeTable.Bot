@@ -44,11 +44,21 @@
   			</li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  				時間割管理
+  				授業管理
   			</a>
   				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  					<a class="dropdown-item" href="/時間割">授業管理</a>
-  					<a class="dropdown-item" href="/event">イベント管理</a>
+  					<a class="dropdown-item" href="/時間割">時間割</a>
+  					<a class="dropdown-item" href="/時間割/変更">授業変更</a>
+  				</div>
+  			</li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  				イベント管理
+  			</a>
+  				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+  					<a class="dropdown-item" href="/event">イベント一覧</a>
+  					<a class="dropdown-item" href="/event/add">イベント追加</a>
   				</div>
   			</li>
 
@@ -56,6 +66,6 @@
   	</div>
 
   </nav>
-  {{!base}}
+    {{!base}}
 </body>
 </html>

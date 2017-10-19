@@ -44,11 +44,21 @@
   			</li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  				時間割管理
+  				授業管理
   			</a>
   				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  					<a class="dropdown-item" href="/時間割">授業管理</a>
-  					<a class="dropdown-item" href="/event">イベント管理</a>
+  					<a class="dropdown-item" href="/時間割">時間割</a>
+  					<a class="dropdown-item" href="/時間割/変更">授業変更</a>
+  				</div>
+  			</li>
+
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  				イベント管理
+  			</a>
+  				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+  					<a class="dropdown-item" href="/event">イベント一覧</a>
+  					<a class="dropdown-item" href="/event/add">イベント追加</a>
   				</div>
   			</li>
 
@@ -56,7 +66,14 @@
   	</div>
 
   </nav>
-
+   <br>
+% if today != '':
+% if message != '':
+  <div style="text-algin: center;">
+    <h2>{{today}}{{message}}</h2>
+  </div>
+% if time != '':
+% if task != '':
     <div class="alt-table-responsive">
       <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -69,46 +86,47 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>微分積分Ⅱ</td>
-            <td></td>
+            <td>{{time[0]}}</td>
+            <td>{{task[0]}}</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>応用物理Ⅰ</td>
-            <td>問題集 pp.14~23</td>
+            <td>{{time[1]}}</td>
+            <td>{{task[1]}}</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>応用微分Ⅴ</td>
-            <td></td>
+            <td>{{time[2]}}</td>
+            <td>{{task[2]}}</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>応用積分Ⅲ</td>
-            <td>プリント3枚</td>
+            <td>{{time[3]}}</td>
+            <td>{{task[3]}}</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>物理アルゴリズム</td>
-            <td></td>
+            <td>{{time[4]}}</td>
+            <td>{{task[4]}}</td>
           </tr>
           <tr>
             <td>6</td>
-            <td>情報物理基礎</td>
-            <td>物理実験レポート</td>
+            <td>{{time[5]}}</td>
+            <td>{{task[5]}}</td>
           </tr>
           <tr>
             <td>7</td>
-            <td>プログラミングⅢ</td>
-            <td>自作ソフトウェア2本</td>
+            <td>{{time[6]}}</td>
+            <td>{{task[6]}}</td>
           </tr>
           <tr>
             <td>8</td>
-            <td>電気的回路</td>
-            <td></td>
+            <td>{{time[7]}}</td>
+            <td>{{task[7]}}</td>
           </tr>
         </tbody>
       </table>
 </div>
 </body>
 </html>
+% end

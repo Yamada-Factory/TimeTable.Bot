@@ -1,5 +1,4 @@
-% rebase('main.tpl', title='時間割表')
-
+% rebase('main.tpl', title='イベント')
 
 % if message != '':
 <div class="alert alert-warning alert-dismissible" role="alert">
@@ -22,18 +21,12 @@
 <br>
 <div class="container">
 
-  <h3>課題追加</h3>
+  <h3>イベント追加</h3>
 
-  <form method="post" action="/task/add">
+  <form method="post" action="/event/add">
     <div class="form-group">
 
-      <label for="comment">教科</label><br>
-        <input type="text" name="subject"><br><br>
-
-      <label for="comment">内容</label><br>
-        <textarea class="form-control" rows="5" id="comment" name="comment"></textarea><br><br>
-
-      <label for="comment">提出期限</label><br>
+      <label for="comment">日程</label><br>
 
       <select name="year">
         <option>
@@ -69,6 +62,11 @@
       </select>
       日
     </div>
+    <br><br>
+
+    <label for="comment">内容</label><br>
+      <textarea class="form-control" rows="5" id="comment" name="comment"></textarea><br><br>
+
     <input type="submit" name="">
   </form>
 </div>
