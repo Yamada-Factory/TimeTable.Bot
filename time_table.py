@@ -161,8 +161,8 @@ def add_time_table_change(date, time, subject):
 
     # list(2次元)に変換
     out = list()
-    for key, value in table_change.items():
-        for e in value:
+    for key in sorted(table_change.keys()):
+        for e in table_change[key]:
             out.append([key, e.time, e.subject])
 
     with open(fs.CHANGE, 'w') as f:
@@ -186,8 +186,8 @@ def add_event(date, event):
         event_list[date] = [Event(date, event)]
 
     out = list()
-    for key, value in event_list.items():
-        for e in value:
+    for key in sorted(event_list.keys()):
+        for e in event_list[key]:
             out.append([key, e.event])
 
     with open(fs.EVENT, 'w') as f:
@@ -212,8 +212,8 @@ def add_task(date, subject, value):
         task_list[date] = [task]
 
     out = list()
-    for key, value in task_list.items():
-        for e in value:
+    for key in sorted(task_list.keys()):
+        for e in task_list[key]:
             out.append([key, e.subject, e.value])
 
     with open(fs.TASK, 'w') as f:
@@ -286,7 +286,7 @@ def event_list_string(data):
         out += e[0].date+' '
         for t in e:
             out += t.event+' '
-        out += ''
+        out += '\n'
     return out
 
 
