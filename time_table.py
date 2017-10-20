@@ -27,7 +27,7 @@ def get_time_table(date):
         change = change_list[date]
 
     # イベントを読み込む
-    event_list = get_event_list(date)
+    event_list = get_event(date)
 
     week = {'月曜': 0, '火曜': 1, '水曜': 2, '木曜': 3, '金曜': 4}
     table_event = ''
@@ -233,7 +233,7 @@ def time_table_string(time_table):
         return '日付が不正です'
     if len(time_table) == 0:
         return '時間割なし'
-    
+
     i = 1
     out = '時間割\n'
     for e in time_table:
@@ -285,8 +285,8 @@ def event_list_string(data):
     for e in data:
         out += e[0].date+' '
         for t in e:
-            out += t+' '
-        out += '\n'
+            out += t.event+' '
+        out += ''
     return out
 
 
@@ -347,3 +347,4 @@ class Event:
     def __init__(self, date, event):
         self.date = date
         self.event = event
+        
