@@ -293,7 +293,7 @@ def event_string(data):
         return 'なし'
     out = ''
     for e in data:
-        out += e.value+'\n'
+        out += e.event+'\n'
     return out
 
 
@@ -367,4 +367,3 @@ class Event:
     def __init__(self, date, event):
         self.date = date
         self.event = event
-        
