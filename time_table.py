@@ -70,10 +70,20 @@ def get_task(date):
 def get_task_list(date):
     task_list = get_task_list_all()
     out_list = list()
-    for d in task_list.keys():
+    for d in sorted(task_list.keys()):
         if d >= date:
             out_list.append(task_list[d])
     return out_list
+
+
+# 要求された日付以降にある課題を返す(list<Task>)
+# なければ空リスト
+def get_task_list_one(date):
+    task_list = get_task_list(date)
+    out = list()
+    for e in task_list:
+        out.extend(e)
+    return out
 
 
 # task.csv内にある課題をすべて取得する(dict<日付:string, list<string>>)
@@ -106,10 +116,20 @@ def get_event(date):
 def get_event_list(date):
     event_list = get_event_list_all()
     out_list = list()
-    for d in event_list.keys():
+    for d in sorted(event_list.keys()):
         if d >= date:
             out_list.append(event_list[d])
     return out_list
+
+
+# 要求された日付以降にあるイベントを返す(list<Event>)
+# なければ空リスト
+def get_event_list_one(date):
+    event_list = get_event_list(date)
+    out = list()
+    for e in event_list:
+        out.extend(e)
+    return out
 
 
 # event.csv内にある全てのイベントのdict<日付:string, list<Event>>を返す
