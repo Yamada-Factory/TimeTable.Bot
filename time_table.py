@@ -319,16 +319,17 @@ def check_date(date):
         print("誤った日付です")
         return False
 
+
 # 今日や明日などの文字列を日付に変換する
 # すでに日付ならばそのまま返す
-def get_date(str):
-    if str == '今日':
+def get_date(date_name):
+    if date_name == '今日':
         return datetime.datetime.today().strftime('%Y/%m/%d')
-    if str == '明日':
+    if date_name == '明日':
         return (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%Y/%m/%d')
-    if str == '明後日':
+    if date_name == '明後日':
         return (datetime.datetime.today() + datetime.timedelta(days=2)).strftime('%Y/%m/%d')
-    return str
+    return date_name
 
 
 class Task:
@@ -362,6 +363,7 @@ class Change:
 
     def get_list(self):
         return [self.time, self.subject]
+
 
 class Event:
     def __init__(self, date, event):

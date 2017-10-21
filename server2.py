@@ -8,13 +8,13 @@ from bottle import *
 
 
 class SSLWebServer(ServerAdapter):
-        def run(self, handler):
-                from gevent.pywsgi import WSGIServer
-                srv = WSGIServer((self.host, self.port), handler,
-                certfile='/etc/pki/tls/certs/trompot/ssl.cert',
-                keyfile='/etc/pki/tls/certs/trompot/ssl.key',
-                ca_certs='/etc/pki/tls/certs/trompot/ca.cert')
-                srv.serve_forever()
+    def run(self, handler):
+        from gevent.pywsgi import WSGIServer
+        srv = WSGIServer((self.host, self.port), handler,
+                         certfile='/etc/pki/tls/certs/trompot/ssl.cert',
+                         keyfile='/etc/pki/tls/certs/trompot/ssl.key',
+                         ca_certs='/etc/pki/tls/certs/trompot/ca.cert')
+        srv.serve_forever()
 
 
 @post('/TimeTable.Bot')
@@ -33,11 +33,11 @@ def line_post():
     events = json.loads(data)
     for event in events:
         reply_token = event['replyToken']
-        type = event['type']
-        if type != 'message':
+        message_type = event['type']
+        if message_type != 'message':
             return
-        type = event['message']['type']
-        if type != 'text':
+        message_type = event['message']['type']
+        if message_type != 'text':
             return
         text = event['message']['text']
         words = re.split('[,、.。 ]', text)
@@ -79,5 +79,6 @@ def line_post():
     r = HTTPResponse(status=200, body=body)
     r.set_header('Content-Type', 'application/json')
     return r
+
 
 run(host='0.0.0.0', port=443, server=SSLWebServer)
