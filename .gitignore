@@ -193,6 +193,7 @@ venv.bak/
 
 #test and debris
 /linebot/
+/bottle-master/
 /server.crt
 /server.csr
 /server.key
@@ -200,6 +201,5 @@ venv.bak/
 /send_test.py
 /Test.py
 /setting.py
-/server2.py
 
 # End of https://www.gitignore.io/api/macos,python,pycharm+all
