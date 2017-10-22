@@ -17,10 +17,8 @@ class SSLWebServer(ServerAdapter):
 
 @post('/TimeTable.Bot')
 def line_post():
-    print('post')
     signature = request.get_header('X-Line-Signature')
     body = request.body.read().decode('utf-8')
-    print(body)
     if not line_api.signature_check(body, signature):
         return
 
