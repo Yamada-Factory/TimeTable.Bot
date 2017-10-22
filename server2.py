@@ -22,7 +22,6 @@ def line_post():
     if not line_api.signature_check(body, signature):
         return
 
-
     events = json.loads(body)['events']
     for event in events:
         reply_token = event['replyToken']
@@ -58,7 +57,7 @@ def line_post():
                 elif words[1] == '時間割' or words[1] == 'table':
                     b = time_table.add_time_table_change(time_table.get_date(words[2]), words[3], words[4])
                 else:
-                    return 
+                    return
                 if b:
                     line_api.reply_message(reply_token, 'success')
                 else:
