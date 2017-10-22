@@ -21,7 +21,7 @@ class SSLWebServer(ServerAdapter):
 def line_post():
     print('post')
     signature = request.get_header('X-Line-Signature')
-    body = request.body
+    body = request.forms.get('events')
     print(body)
     if not line_api.signature_check(body, signature):
         return
