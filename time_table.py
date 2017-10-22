@@ -7,6 +7,7 @@ import setting as fs
 # 日付が不正ならNoneを返す
 # 休みなどで時間割がなければ空リストを返す
 def get_time_table(date):
+    date = format_date(date)
     try:
         input_date = datetime.datetime.strptime(date, '%Y/%m/%d')
     except ValueError:
@@ -59,6 +60,7 @@ def get_time_table(date):
 # 要求された日付にある課題を返す(list<Task>)
 # なければ空リスト
 def get_task(date):
+    date = format_date(date)
     task_list = get_task_list_all()
     if date in task_list:
         return task_list[date]
@@ -68,6 +70,7 @@ def get_task(date):
 # 要求された日付以降にある課題を返す(list<list<Task>>)
 # なければ空リスト
 def get_task_list(date):
+    date = format_date(date)
     task_list = get_task_list_all()
     out_list = list()
     for d in sorted(task_list.keys()):
@@ -79,6 +82,7 @@ def get_task_list(date):
 # 要求された日付以降にある課題を返す(list<Task>)
 # なければ空リスト
 def get_task_list_one(date):
+    date = format_date(date)
     task_list = get_task_list(date)
     out = list()
     for e in task_list:
@@ -105,6 +109,7 @@ def get_task_list_all():
 # 要求された日付にあるイベントを返す(list<Event>)
 # なければ空リスト
 def get_event(date):
+    date = format_date(date)
     event_list = get_event_list_all()
     if date in event_list:
         return event_list[date]
@@ -114,6 +119,7 @@ def get_event(date):
 # 要求された日付以降にあるイベントを返す(list<list<Event>>)
 # なければ空リスト
 def get_event_list(date):
+    date = format_date(date)
     event_list = get_event_list_all()
     out_list = list()
     for d in sorted(event_list.keys()):
@@ -125,6 +131,7 @@ def get_event_list(date):
 # 要求された日付以降にあるイベントを返す(list<Event>)
 # なければ空リスト
 def get_event_list_one(date):
+    date = format_date(date)
     event_list = get_event_list(date)
     out = list()
     for e in event_list:
@@ -169,6 +176,7 @@ def get_time_table_change_all():
 def add_time_table_change(date, time, subject):
     if not check_date(date):
         return False
+    date = format_date(date)
     table_change = get_time_table_change_all()
     change = Change(date, time, subject)
     if date in table_change:
@@ -196,6 +204,7 @@ def add_time_table_change(date, time, subject):
 def add_event(date, event):
     if not check_date(date):
         return False
+    date = format_date(date)
     event_list = get_event_list_all()
     if date in event_list:
         for e in event_list[date]:
@@ -221,6 +230,7 @@ def add_event(date, event):
 def add_task(date, subject, value):
     if not check_date(date):
         return False
+    date = format_date(date)
     task_list = get_task_list_all()
     task = Task(date, subject, value)
     if date in task_list:
@@ -330,6 +340,14 @@ def get_date(date_name):
     if date_name == '明後日':
         return (datetime.datetime.today() + datetime.timedelta(days=2)).strftime('%Y/%m/%d')
     return date_name
+
+
+# 与えられた日付を 年4桁/月2桁/日2桁(str) の形式に変換する
+def format_date(date):
+    d = date.split('/')
+    month = d[1] if len(d[1])==2 else '0'+d[1]
+    day = d[2] if len(d[2])==2 else '0'+d[2]
+    return '{}/{}/{}'.format(d[0], month, day)
 
 
 class Task:
