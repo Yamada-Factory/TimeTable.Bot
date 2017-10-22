@@ -64,7 +64,6 @@
 
   		</ul>
   	</div>
-
   </nav>
    <br>
 % if today != '':
@@ -72,8 +71,17 @@
   <div style="text-algin: center;">
     <h2>{{today}}{{message}}</h2>
   </div>
+% end
+
+% if event != '':
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>イベント</strong><br>
+  {{event}}
+</div>
+% end
+
 % if time != '':
-% if task != '':
     <div class="alt-table-responsive">
       <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -84,49 +92,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>{{time[0]}}</td>
-            <td>{{task[0]}}</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>{{time[1]}}</td>
-            <td>{{task[1]}}</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>{{time[2]}}</td>
-            <td>{{task[2]}}</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>{{time[3]}}</td>
-            <td>{{task[3]}}</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>{{time[4]}}</td>
-            <td>{{task[4]}}</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>{{time[5]}}</td>
-            <td>{{task[5]}}</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>{{time[6]}}</td>
-            <td>{{task[6]}}</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>{{time[7]}}</td>
-            <td>{{task[7]}}</td>
-          </tr>
+          % if len(task) != 0:
+            % for i in range(8):
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{time[i]}}</td>
+              <td>{{task[i]}}</td>
+            </tr>
+            % end
+
+            % elif len(task) == 0:
+              % for i in range(8):
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{time[i]}}</td>
+                <td></td>
+              </tr>
+              % end
         </tbody>
       </table>
-</div>
+    </div>
+% end
 </body>
 </html>
-% end
