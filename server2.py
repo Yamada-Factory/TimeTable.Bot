@@ -38,7 +38,7 @@ def line_post():
             return
         try:
             if words[0] == '登録' or words == 'register':
-                b = True
+                b = False
                 if words[1] == '課題' or words[1] == 'task':
                     b = time_table.add_task(time_table.get_date(words[2]), words[3], words[4])
                 elif words[1] == 'イベント' or words[1] == 'event':
@@ -50,7 +50,7 @@ def line_post():
                 else:
                     line_api.reply_message(reply_token, 'failure')
             elif words[0] == '削除' or words == 'delete':
-                b = True
+                b = False
                 if words[1] == '課題' or words[1] == 'task':
                     b = time_table.add_task(time_table.get_date(words[2]), words[3], words[4])
                 elif words[1] == 'イベント' or words[1] == 'event':
