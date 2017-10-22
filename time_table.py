@@ -252,10 +252,80 @@ def add_task(date, subject, value):
     return True
 
 
-# 未実装
-# def delete_time_table_change(date, time, subject):
-# def delete_event(date, event):
-# def delete_task(date, subject, value):
+# 時間割変更をcsvから削除する
+# 成功ならTrueを返す
+def delete_time_table_change(date, time, subject):
+    if not check_date(date):
+        return False
+    date = format_date(date)
+    table_change = get_time_table_change_all()
+    change = Change(date, time, subject)
+    if date in table_change:
+        if change in table_change[date]:
+            table_change[date].remove(change)
+        else:
+            return False
+
+    # list(2次元)に変換
+    out = list()
+    for key in sorted(table_change.keys()):
+        for e in table_change[key]:
+            out.append([key, e.time, e.subject])
+
+    with open(fs.CHANGE, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerows(out)
+    return True
+
+
+# イベントをcsvから削除する
+# 成功ならTrueを返す
+def delete_event(date, event):
+    if not check_date(date):
+        return False
+    date = format_date(date)
+    event_list = get_event_list_all()
+    e = Event(date, event)
+    if date in event_list:
+        if e in event_list[date]:
+            event_list[date].remove(e)
+        else:
+            return False
+    out = list()
+    for key in sorted(event_list.keys()):
+        for e in event_list[key]:
+            out.append([key, e.event])
+
+    with open(fs.EVENT, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerows(out)
+    return True
+
+
+# 課題をcsvから削除する
+# 成功ならTrueを返す
+def delete_task(date, subject, value):
+    if not check_date(date):
+        return False
+    date = format_date(date)
+    task_list = get_task_list_all()
+    task = Task(date, subject, value)
+    if date in task_list:
+        if task in task_list[date]:
+            task_list[date].remove(task)
+        else:
+            return False
+
+    out = list()
+    for key in sorted(task_list.keys()):
+        for e in task_list[key]:
+            out.append([key, e.subject, e.value])
+
+    with open(fs.TASK, 'w') as f:
+        writer = csv.writer(f)
+        writer.writerows(out)
+    return True
+
 
 # 時間割リストを文字列に変換する
 def time_table_string(time_table):

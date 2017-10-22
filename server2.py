@@ -49,6 +49,18 @@ def line_post():
                     line_api.reply_message(reply_token, 'success')
                 else:
                     line_api.reply_message(reply_token, 'failure')
+            elif words[0] == '削除' or words == 'delete':
+                b = True
+                if words[1] == '課題' or words[1] == 'task':
+                    b = time_table.add_task(time_table.get_date(words[2]), words[3], words[4])
+                elif words[1] == 'イベント' or words[1] == 'event':
+                    b = time_table.add_event(time_table.get_date(words[2]), words[3])
+                elif words[1] == '時間割' or words[1] == 'table':
+                    b = time_table.add_time_table_change(time_table.get_date(words[2]), words[3], words[4])
+                if b:
+                    line_api.reply_message(reply_token, 'success')
+                else:
+                    line_api.reply_message(reply_token, 'failure')
             elif words[0] == '課題' or words[0] == 'task':
                 line_api.reply_message(reply_token,
                                        time_table.time_table_string(time_table.get_task(time_table.get_date(words[1]))))
