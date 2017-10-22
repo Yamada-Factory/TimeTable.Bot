@@ -1,9 +1,7 @@
-import urllib.parse
-import urllib.parse
 import time_table
 import line_api
-import urllib.parse
 import json
+import setting
 from bottle import *
 
 
@@ -11,9 +9,9 @@ class SSLWebServer(ServerAdapter):
     def run(self, handler):
         from gevent.pywsgi import WSGIServer
         srv = WSGIServer((self.host, self.port), handler,
-                         certfile='/etc/pki/tls/certs/trompot/ssl.cert',
-                         keyfile='/etc/pki/tls/certs/trompot/ssl.key',
-                         ca_certs='/etc/pki/tls/certs/trompot/ca.cert')
+                         certfile=setting.CERT_FILE,
+                         keyfile=setting.KEY_FILE,
+                         ca_certs=setting.CA_FILE)
         srv.serve_forever()
 
 
@@ -21,23 +19,18 @@ class SSLWebServer(ServerAdapter):
 def line_post():
     print('post')
     signature = request.get_header('X-Line-Signature')
-    body = request.forms.get('events')
+    body = request.body.read().decode('utf-8')
     print(body)
     if not line_api.signature_check(body, signature):
         return
 
-    data = urllib.parse.unquote(body)
-    data = data.replace('events=', '').replace('+', '').replace("'", '"')
-    print(data)
 
-    events = json.loads(data)
+    events = json.loads(body)['events']
     for event in events:
         reply_token = event['replyToken']
-        message_type = event['type']
-        if message_type != 'message':
+        if event['type'] != 'message':
             return
-        message_type = event['message']['type']
-        if message_type != 'text':
+        if event['message']['type'] != 'text':
             return
         text = event['message']['text']
         words = re.split('[,、.。 ]', text)
