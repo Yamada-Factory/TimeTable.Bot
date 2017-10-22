@@ -345,8 +345,8 @@ def get_date(date_name):
 # 与えられた日付を 年4桁/月2桁/日2桁(str) の形式に変換する
 def format_date(date):
     d = date.split('/')
-    month = d[1] if len(d[1])==2 else '0'+d[1]
-    day = d[2] if len(d[2])==2 else '0'+d[2]
+    month = d[1] if len(d[1]) == 2 else '0' + d[1]
+    day = d[2] if len(d[2]) == 2 else '0' + d[2]
     return '{}/{}/{}'.format(d[0], month, day)
 
 
