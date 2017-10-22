@@ -43,6 +43,8 @@ def line_post():
                     b = time_table.add_event(time_table.get_date(words[2]), words[3])
                 elif words[1] == '時間割' or words[1] == 'table':
                     b = time_table.add_time_table_change(time_table.get_date(words[2]), words[3], words[4])
+                else:
+                    return
                 if b:
                     line_api.reply_message(reply_token, 'success')
                 else:
@@ -55,6 +57,8 @@ def line_post():
                     b = time_table.add_event(time_table.get_date(words[2]), words[3])
                 elif words[1] == '時間割' or words[1] == 'table':
                     b = time_table.add_time_table_change(time_table.get_date(words[2]), words[3], words[4])
+                else:
+                    return 
                 if b:
                     line_api.reply_message(reply_token, 'success')
                 else:
