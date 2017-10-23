@@ -2,6 +2,8 @@ import time_table
 import line_api
 import json
 import setting
+import sys
+import signal
 from bottle import *
 
 
@@ -87,4 +89,9 @@ def line_post():
     return r
 
 
+def handler(signal, frame):
+        line_api.push_message(setting.ID, ['停止'])
+        sys.exit(0)
+signal.signal(signal.SIGINT, handler)
+line_api.push_message(setting.ID, ['起動'])
 run(host='0.0.0.0', port=443, server=SSLWebServer)
