@@ -30,11 +30,11 @@ def line_post():
         if event['message']['type'] != 'text':
             return
         text = event['message']['text']
-        words = re.split('[,、.。 ]', text)
+        words = re.split('[, 　]', text)
         if len(words) <= 1:
             return
         try:
-            if words[0] == '登録' or words == 'register':
+            if words[0] == '登録' or words[0] == 'register':
                 b = False
                 if words[1] == '課題' or words[1] == 'task':
                     b = time_table.add_task(time_table.get_date(words[2]), words[3], words[4])
@@ -48,14 +48,14 @@ def line_post():
                     line_api.reply_message(reply_token, 'success')
                 else:
                     line_api.reply_message(reply_token, 'failure')
-            elif words[0] == '削除' or words == 'delete':
+            elif words[0] == '削除' or words[0] == 'delete':
                 b = False
                 if words[1] == '課題' or words[1] == 'task':
-                    b = time_table.add_task(time_table.get_date(words[2]), words[3], words[4])
+                    b = time_table.delete_task(time_table.get_date(words[2]), words[3], words[4])
                 elif words[1] == 'イベント' or words[1] == 'event':
-                    b = time_table.add_event(time_table.get_date(words[2]), words[3])
+                    b = time_table.delete_event(time_table.get_date(words[2]), words[3])
                 elif words[1] == '時間割' or words[1] == 'table':
-                    b = time_table.add_time_table_change(time_table.get_date(words[2]), words[3], words[4])
+                    b = time_table.delete_time_table_change(time_table.get_date(words[2]), words[3], words[4])
                 else:
                     return
                 if b:
@@ -64,7 +64,7 @@ def line_post():
                     line_api.reply_message(reply_token, 'failure')
             elif words[0] == '課題' or words[0] == 'task':
                 line_api.reply_message(reply_token,
-                                       time_table.time_table_string(time_table.get_task(time_table.get_date(words[1]))))
+                                       time_table.task_string(time_table.get_task(time_table.get_date(words[1]))))
             elif words[0] == 'イベント' or words[0] == 'event':
                 line_api.reply_message(reply_token,
                                        time_table.event_string(time_table.get_event(time_table.get_date(words[1]))))

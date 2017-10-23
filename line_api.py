@@ -41,8 +41,12 @@ def reply_message(reply_token, text):
 def push_message(id, text):
     line_bot_api = LineBotApi(setting.ACCESS_TOKEN)
 
+    send_text = list()
+    for e in text:
+        send_text.append(TextSendMessage(text=e))
+
     try:
-        line_bot_api.push_message(id, TextSendMessage(text=text))
+        line_bot_api.push_message(id, send_text)
     except LineBotApiError as e:
         print('error')
         print(e)

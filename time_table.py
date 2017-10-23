@@ -37,7 +37,7 @@ def get_time_table(date):
 
     for e in event_list:
         if e.event == '休み':
-            table_event = e
+            table_event = e.event
             break
         for d in week.keys():
             if e.event == d:
@@ -341,6 +341,7 @@ def time_table_string(time_table):
             out += str(i)+' '+e+'\n'
         else:
             out += str(i)+'\n'
+        i += 1
     return out
 
 
@@ -457,3 +458,9 @@ class Event:
     def __init__(self, date, event):
         self.date = date
         self.event = event
+
+    def __eq__(self, other):
+        if other is None or type(self) != type(other):
+            return False
+        return self.__dict__ == other.__dict__
+
