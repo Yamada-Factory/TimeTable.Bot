@@ -32,7 +32,7 @@ def line_post():
         if event['message']['type'] != 'text':
             return
         text = event['message']['text']
-        words = re.split('[, 　]', text)
+        words = re.split('[ 　\n]', text)
         if len(words) <= 1:
             return
         try:
