@@ -36,8 +36,8 @@ def get_time_table(date):
     #     table_event = '休み'
 
     for e in event_list:
-        if e.event == '休み':
-            table_event = e.event
+        if e.event == '休み' or e.event == '時間割なし':
+            table_event = '時間割なし'
             break
         for d in week.keys():
             if e.event == d:
@@ -45,7 +45,7 @@ def get_time_table(date):
                 break
     week_point = input_date.weekday()
 
-    if table_event == '休み' or week_point >= 5:
+    if table_event == '時間割なし' or week_point >= 5:
         return []
     elif table_event != '':
         week_point = week[table_event]
