@@ -410,6 +410,12 @@ def get_date(date_name):
         return (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%Y/%m/%d')
     if date_name == '明後日':
         return (datetime.datetime.today() + datetime.timedelta(days=2)).strftime('%Y/%m/%d')
+    if date_name == '明々後日':
+        return (datetime.datetime.today() + datetime.timedelta(days=3)).strftime('%Y/%m/%d')
+    if date_name == '昨日':
+        return (datetime.datetime.today() + datetime.timedelta(days=-1)).strftime('%Y/%m/%d')
+    if date_name == '来週':
+        return (datetime.datetime.today() + datetime.timedelta(days=7)).strftime('%Y/%m/%d')
     return date_name
 
 
@@ -463,4 +469,3 @@ class Event:
         if other is None or type(self) != type(other):
             return False
         return self.__dict__ == other.__dict__
-
