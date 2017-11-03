@@ -199,7 +199,8 @@ venv.bak/
 /server.key
 /db/
 /send_test.py
-/test.py
+/Test.py
 /setting.py
+/server.py
 
 # End of https://www.gitignore.io/api/macos,python,pycharm+all
