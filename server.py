@@ -23,10 +23,8 @@ class SSLWebServer(ServerAdapter):
 @get('/')
 def top():
     date = tomorrow_Day() #5時間割後の日付取得
-#    date = '2017/10/23'
     time = get_time_table(date) # 時間割取得
     event = event_string(get_event(date)) # イベント取得
-#    task = referenceTask(date) # 課題取得
     task = today_task(date)
 
     if( len(time) == 0):
