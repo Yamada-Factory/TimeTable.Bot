@@ -136,9 +136,9 @@ def event_add():
 
 
 # error
-@error(404)
-def error404(error):
-    return template('error')
+# @error(404)
+# def error404(error):
+#     return template('error')
 
 
 # これより下は基本的に触らなくて良い
