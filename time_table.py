@@ -275,7 +275,7 @@ def format_date(date):
 def access(query):
     connection = sqlite3.connect(fs.SQL)
     cursor = connection.cursor()
-    result = cursor.execute(query).faetchall()
+    result = cursor.execute(query).fetchall()
     connection.commit()
     cursor.close()
     connection.close()
