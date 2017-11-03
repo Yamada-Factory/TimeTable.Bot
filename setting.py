@@ -2,6 +2,7 @@ TIME_TABLE = 'db/time_table.csv'
 EVENT = 'db/event.csv'
 TASK = 'db/task.csv'
 CHANGE = 'db/time_table_change.csv'
+SQL = 'db/bot.db'
 
 ACCESS_TOKEN = ''
 CHANNEL_SECRET = ''

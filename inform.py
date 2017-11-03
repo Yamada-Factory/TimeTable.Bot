@@ -1,6 +1,7 @@
 import line_api
 import setting
 from time_table import *
+from string_changer import *
 
 
 table = time_table_string(get_time_table(get_date("明日")))
