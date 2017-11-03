@@ -349,7 +349,7 @@ def time_table_string(time_table):
 def task_string(data):
     if len(data) == 0:
         return 'なし'
-    out = '課題\n'
+    out = ''
     for e in data:
         out += e.subject+' '+e.value+'\n'
     return out
@@ -359,7 +359,7 @@ def task_string(data):
 def task_list_string(data):
     if len(data) == 0:
         return 'なし'
-    out = '課題リスト\n'
+    out = ''
     for e in data:
         out += e[0].date+' '
         for t in e:
@@ -372,7 +372,7 @@ def task_list_string(data):
 def event_string(data):
     if len(data) == 0:
         return 'なし'
-    out = 'イベント\n'
+    out = ''
     for e in data:
         out += e.event+'\n'
     return out
@@ -382,7 +382,7 @@ def event_string(data):
 def event_list_string(data):
     if len(data) == 0:
         return 'なし'
-    out = 'イベントリスト\n'
+    out = ''
     for e in data:
         out += e[0].date+' '
         for t in e:

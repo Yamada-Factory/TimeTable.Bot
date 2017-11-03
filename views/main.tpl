@@ -9,11 +9,14 @@
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+      <!-- GoogleFonts -->
+      <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
   	<!--ブランド名・ロゴを入れる-->
-    <a class="navbar-brand" href="/"><img src="/images/logo.png" style="height:40px"></img></a>
+    <a class="navbar-brand" href="/"><h3 style="font-family: 'Orbitron', sans-serif;">TROMPOT<br>&emsp;&emsp;-&nbsp;Project</h3></a>
 
   	<!--レスポンシブの際のハンバーガーメニューのボタン-->
   	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,5 +70,6 @@
 
   </nav>
     {{!base}}
+	<br><br><br>
 </body>
 </html>

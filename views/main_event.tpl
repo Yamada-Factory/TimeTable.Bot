@@ -9,7 +9,6 @@
 % end
 
 % if event != '':
-</script>
 <div class="alt-table-responsive">
 	<table class="table table-hover table-striped table-bordered">
 		<thead>

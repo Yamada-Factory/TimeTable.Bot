@@ -9,11 +9,16 @@
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+      <!-- GoogleFonts -->
+      <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
   	<!--ブランド名・ロゴを入れる-->
-  	<a class="navbar-brand" href="/"><img src="/images/logo.png" style="height:40px"></img></a>
+    <div >
+  	<a class="navbar-brand" href="/"><h3 style="font-family: 'Orbitron', sans-serif;">TROMPOT<br>&emsp;&emsp;-&nbsp;Project</h3></a>
+    </div>
 
   	<!--レスポンシブの際のハンバーガーメニューのボタン-->
   	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,30 +93,42 @@
           <tr>
               <th></th>
               <th>授業</th>
-              <th>課題</th>
           </tr>
         </thead>
         <tbody>
-          % if len(task) != 0:
             % for i in range(8):
             <tr>
               <td>{{i+1}}</td>
+              % if time[i] == 'null':
+              % time[i] = 'なし'
+              % end
               <td>{{time[i]}}</td>
-              <td>{{task[i]}}</td>
             </tr>
             % end
-
-            % elif len(task) == 0:
-              % for i in range(8):
+        </tbody>
+        <thead>
+      </table>
+% end
+% if len(task) != 0:
+      <div class="alt-table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+                <th>教科</th>
+                <th>課題内容</th>
+            </tr>
+          </thead>
+          <tbody>
+              % for i in range(0, len(task)-1, 3):
               <tr>
-                <td>{{i+1}}</td>
-                <td>{{time[i]}}</td>
-                <td></td>
+                <td>{{task[i+1]}}</td>
+                <td>{{task[i+2]}}</td>
               </tr>
               % end
-        </tbody>
-      </table>
+            </tbody>
+        </table>
     </div>
 % end
+<br><br><br>
 </body>
 </html>

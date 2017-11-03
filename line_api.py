@@ -15,14 +15,6 @@ PUSH_ENDPOINT = 'https://api.line.me/v2/bot/message/push'
 
 # 送られてきたrequestの署名を検証する
 def signature_check(body, signature):
-    # # channel_secret = ... # Channel secret string
-    # # body = ... # Request body string
-    # hash = hmac.new(body.encode('utf-8'), hashlib.sha256).digest()
-    # signature = base64.b64encode(hash)
-    # # Compare X-Line-Signature request header and the signature
-    # if signature == signature1:
-    #     return True
-    # return False
     b = webhook.SignatureValidator(setting.CHANNEL_SECRET)
     return b.validate(body, signature)
 
