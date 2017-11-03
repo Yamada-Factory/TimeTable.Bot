@@ -3,6 +3,9 @@
 作者の都合上，日本語以外でのサーポートは受け付けておりません.  
 (We can read Japanese only.)
 
+##### Download  
+[ここ](https://github.com/TROMPOT-Project/TimeTable.Bot/releases/download/v1.0/release_v1.zip)でDownload  
+
 ## システムについて  
 
 ### 概要  
