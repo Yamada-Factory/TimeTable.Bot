@@ -155,7 +155,7 @@ def add_time_table_change(date, time, subject):
     try:
         access('INSERT INTO time_table_change(date, time, subject) VALUES {}'.format((get_date(date), time, subject)))
         return True
-    except sqlite3.IntegrityError:
+    except Exception:
         return False
 
 
@@ -165,7 +165,7 @@ def add_event(date, event):
     try:
         access("INSERT INTO event(date, event) VALUES {}".format((get_date(date), event)))
         return True
-    except sqlite3.IntegrityError:
+    except Exception:
         return False
 
 
@@ -174,62 +174,99 @@ def add_event(date, event):
 def add_task(date, subject, value):
     try:
         access('INSERT INTO task(date, subject, value) VALUES {}'.format((get_date(date), subject, value)))
-    except sqlite3.IntegrityError:
+        return True
+    except Exception:
         return False
 
 
 # 時間割変更をdbから削除する
 # 成功ならTrueを返す
 def delete_time_table_change(date, time, subject):
-    access("DELETE FROM time_table_change WHERE date == '{}' AND time == '{}' AND subject == '{}'".format(get_date(date), time, subject))
+    try:
+        access("DELETE FROM time_table_change WHERE date == '{}' AND time == '{}' AND subject == '{}'".format(get_date(date), time, subject))
+        return True
+    except Exception:
+        return False
 
 
 # イベントをdbから削除する
 # 成功ならTrueを返す
 def delete_event(date, event):
-    access("DELETE FROM event WHERE date == '{}' AND event == '{}'".format(get_date(date), event))
+    try:
+        access("DELETE FROM event WHERE date == '{}' AND event == '{}'".format(get_date(date), event))
+        return True
+    except Exception:
+        return False
 
 
 # 課題をdbから削除する
 # 成功ならTrueを返す
 def delete_task(date, subject, value):
-    access("DELETE FROM task WHERE date == '{}' AND subject == '{}' AND value == '{}'".format(get_date(date), subject, value))
+    try:
+        access("DELETE FROM task WHERE date == '{}' AND subject == '{}' AND value == '{}'".format(get_date(date), subject, value))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDの時間割変更をdbから削除する
 # 成功ならTrueを返す
 def delete_time_table_change_id(id):
-    access("DELETE FROM time_table_change WHERE id == {}".format(id))
+    try:
+        access("DELETE FROM time_table_change WHERE id == {}".format(id))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDのイベントをdbから削除する
 # 成功ならTrueを返す
 def delete_event_id(id):
-    access("DELETE FROM event WHERE id == {}".format(id))
+    try:
+        access("DELETE FROM event WHERE id == {}".format(id))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDの課題をdbから削除する
 # 成功ならTrueを返す
 def delete_task_id(id):
-    access("DELETE FROM task WHERE id == {}".format(id))
+    try:
+        access("DELETE FROM task WHERE id == {}".format(id))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDの時間割変更を更新する
 # 成功ならTrueを返す
 def update_time_table_change(id, date, time, subject):
-    access("UPDATE time_table_change SET date='{}', time='{}', subject='{}' WHERE id = {}".format(get_date(date), time, subject, id))
+    try:
+        access("UPDATE time_table_change SET date='{}', time='{}', subject='{}' WHERE id = {}".format(get_date(date), time, subject, id))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDのイベントを更新する
 # 成功ならTrueを返す
 def update_event(id, date, event):
-    access("UPDATE event SET date='{}', event='{}' WHERE id = {}".format(get_date(date), event, id))
+    try:
+        access("UPDATE event SET date='{}', event='{}' WHERE id = {}".format(get_date(date), event, id))
+        return True
+    except Exception:
+        return False
 
 
 # 指定IDの課題を更新する
 # 成功ならTrueを返す
 def update_task(id, date, subject, value):
-    access("UPDATE task SET date='{}', subject='{}', value='{}' WHERE id = {}".format(get_date(date), subject, value, id))
+    try:
+        access("UPDATE task SET date='{}', subject='{}', value='{}' WHERE id = {}".format(get_date(date), subject, value, id))
+        return True
+    except Exception:
+        return False
 
 
 # 引数の日付の正当性を確かめる
