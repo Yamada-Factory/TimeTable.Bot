@@ -45,10 +45,8 @@ def task_list_string_id(data):
         return 'なし'
     out = '課題リスト\n'
     for e in data:
-        out += e[0].date+' '
         for t in e:
-            out += '('+str(t.id)+' '+t.subject+' '+t.value+') '
-        out += '\n'
+            out += '{} {} {} {}\n'.format(t.id, t.date, t.subject, t.value)
     return out
 
 
@@ -81,8 +79,43 @@ def event_list_string_id(data):
         return 'なし'
     out = 'イベントリスト\n'
     for e in data:
-        out += e[0].date+' '
         for t in e:
-            out += '('+str(t.id)+' '+t.event+') '
+            out += '{} {} {}\n'.format(t.id, t.date, t.event)
+    return out
+
+
+# 時間割変更を文字列に変換
+def time_table_change_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = '時間割変更\n'
+    for e in data:
+        out += e.time+' '+e.subject+'\n'
+    return out
+
+
+# 時間割変更のリストを文字列に変換
+def time_table_change_list_string(data):
+    if len(data) == 0:
+        return 'なし'
+    out = '時間割変更リスト\n'
+    for e in data:
+        out += e[0].date + ' '
+        for t in e:
+            out += t.event + ' '
         out += '\n'
+
+        for t in e:
+            out += '{} {} {}\n'.format(t.id, t.time, t.subject)
+
+    return out
+
+# 時間割変更のリストを文字列に変換
+def time_table_change_list_string_id(data):
+    if len(data) == 0:
+        return 'なし'
+    out = '時間割変更\n'
+    for e in data:
+        for t in e:
+            out += '{} {} {} {}\n'.format(t.id, t.date, t.time, t.subject)
     return out

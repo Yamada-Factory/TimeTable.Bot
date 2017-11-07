@@ -15,9 +15,25 @@ def processing_input(events):
         text = event['message']['text']
         words = re.split('[ 　\n]', text)
 
-        command_pattern = {'登録':'登録', 'register':'登録', '削除':'削除', 'delete':'削除', '更新':'更新', 'update':'更新'}
+        command_pattern = {'登録': '登録', 'register': '登録',
+                           '削除': '削除', 'delete': '削除',
+                           '更新': '更新', 'update': '更新'
+                           }
         date_pattern = ['\d{4,4}/\d{1,2}/\d{1,2}', '昨日', '明日', '明後日', '明々後日', '来週']
-        tag_pattern = {'時間割':'時間割', 'time_table':'時間割', '課題':'課題', 'task':'課題', 'イベント':'イベント', 'event':'イベント', '課題リスト':'課題リスト', 'task_list':'課題リスト', 'イベントリスト':'イベントリスト', 'event_list':'イベントリスト'}
+        tag_pattern = {'時間割': '時間割',
+                       'time_table': '時間割',
+                       '課題': '課題',
+                       'task': '課題',
+                       'イベント': 'イベント',
+                       'event': 'イベント',
+                       '課題リスト': '課題リスト',
+                       'task_list': '課題リスト',
+                       'イベントリスト': 'イベントリスト',
+                       'event_list': 'イベントリスト',
+                       '時間割変更': '時間割変更',
+                       'time_table_change': '時間割変更',
+                       '起動停止ランダム': '起動停止ランダム'
+                       }
 
         flag = '表示'
         for p in command_pattern.keys():
@@ -66,8 +82,15 @@ def processing_input(events):
                         line_api.reply_message(reply_token, event_list_string_id(get_event_list(date)))
                     else:
                         line_api.reply_message(reply_token, event_list_string(get_event_list(date)))
+                elif tag == '時間割変更':
+                    if id_option:
+                        line_api.reply_message(reply_token, time_table_change_list_string_id(get_time_table_change_list(date)))
+                    else:
+                        line_api.reply_message(reply_token, time_table_change_list_string(get_time_table_change_list(date)))
+                elif tag == '起動停止ランダム':
+                    line_api.reply_message(reply_token, '機動停止ガンダム')
             elif flag == '登録':
-                if tag == '時間割':
+                if tag == '時間割' or tag == '時間割変更':
                     if add_time_table_change(date, words[0], words[1]):
                         line_api.reply_message(reply_token, 'success')
                     else:
@@ -83,7 +106,7 @@ def processing_input(events):
                     else:
                         line_api.reply_message(reply_token, 'failure')
             elif flag == '削除':
-                if tag == '時間割':
+                if tag == '時間割' or tag == '時間割変更':
                     if id_option:
                         if delete_time_table_change_id(words[0]):
                             line_api.reply_message(reply_token, 'success')
@@ -117,7 +140,7 @@ def processing_input(events):
                         else:
                             line_api.reply_message(reply_token, 'failure')
             elif flag == '更新':
-                if tag == '時間割':
+                if tag == '時間割' or tag == '時間割変更':
                     if update_time_table_change(words[0], date, words[1], words[2]):
                         line_api.reply_message(reply_token, 'success')
                     else:

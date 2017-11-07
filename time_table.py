@@ -113,8 +113,8 @@ def get_event_dict(date):
     event_dict = dict()
     for d in event_list:
         event_dict[d[0]] = list()
-    tasks = access("SELECT * FROM event WHERE date >= '{}' ORDER BY date ASC ".format(get_date(date)))
-    for event in tasks:
+    events = access("SELECT * FROM event WHERE date >= '{}' ORDER BY date ASC ".format(get_date(date)))
+    for event in events:
         event_dict[event[0]].append(Event(event))
     return event_dict
 
@@ -146,6 +146,39 @@ def get_time_table_change(date):
     out = list()
     for change in changes:
         out.append(Change(change))
+    return out
+
+
+# 要求された日付以降にある時間割変更を返す(list<list<Change>>)
+# なければ空リスト
+def get_time_table_change_dict(date):
+    event_list = access("SELECT DISTINCT date FROM time_table_change WHERE date >= '{}'".format(get_date(date)))
+    event_dict = dict()
+    for d in event_list:
+        event_dict[d[0]] = list()
+    changes = access("SELECT * FROM time_table_change WHERE date >= '{}' ORDER BY date ASC ".format(get_date(date)))
+    for change in changes:
+        event_dict[change[0]].append(Change(change))
+    return event_dict
+
+
+# 要求された日付以降にあるイベントを返す(list<list<Event>>)
+# なければ空リスト
+def get_time_table_change_list(date):
+    changes = get_time_table_change_dict(date)
+    out = list()
+    for d in sorted(changes.keys()):
+        out.append(changes[d])
+    return out
+
+
+# 要求された日付以降にあるイベントを返す(list<Event>)
+# なければ空リスト
+def get_time_table_change_list_one(date):
+    chages = access("SELECT * FROM time_table_change WHERE date >= '{}' ORDER BY date ASC ".format(get_date(date)))
+    out = list()
+    for event in chages:
+        out.append(Change(event))
     return out
 
 
