@@ -1,5 +1,4 @@
-% import os
-% rebase('main.tpl', title='時間割表')
+% rebase('main.tpl', title='課題')
 
 % if message != '':
 <div class="alert alert-success alert-dismissible" role="alert">
@@ -10,7 +9,8 @@
 % end
 
 <br>
-% if task != '':
+
+% if len(task) != 0:
     <div class="alt-table-responsive">
       <table class="table table-hover table-striped table-bordered">
         <thead>
@@ -31,4 +31,8 @@
         </tbody>
       </table>
     </div>
+% end
+
+% if len(task) == 0:
+<h2>現在，登録されている課題はありません</h2>
 % end

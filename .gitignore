@@ -202,5 +202,7 @@ venv.bak/
 /Test.py
 /setting.py
 /time_table2.py
+/server2.py
+/server3.py
 
 # End of https://www.gitignore.io/api/macos,python,pycharm+all

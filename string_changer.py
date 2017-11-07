@@ -19,7 +19,7 @@ def time_table_string(time_table):
 # 課題を文字列に変換する
 def task_string(data):
     if len(data) == 0:
-        return 'なし'
+        return '課題なし'
     out = '課題\n'
     for e in data:
         out += e.subject+' '+e.value+'\n'
@@ -29,7 +29,7 @@ def task_string(data):
 # 課題リストを文字列に変換する
 def task_list_string(data):
     if len(data) == 0:
-        return 'なし'
+        return '課題なし'
     out = '課題リスト\n'
     for e in data:
         out += e[0].date+' '
@@ -42,7 +42,7 @@ def task_list_string(data):
 # 課題リストを文字列に変換する(id付き)
 def task_list_string_id(data):
     if len(data) == 0:
-        return 'なし'
+        return '課題なし'
     out = '課題リスト\n'
     for e in data:
         for t in e:
@@ -53,7 +53,7 @@ def task_list_string_id(data):
 # イベントを文字列に変換する
 def event_string(data):
     if len(data) == 0:
-        return 'なし'
+        return 'イベントなし'
     out = 'イベント\n'
     for e in data:
         out += e.event+'\n'
@@ -63,7 +63,7 @@ def event_string(data):
 # イベントリストを文字列に変換する
 def event_list_string(data):
     if len(data) == 0:
-        return 'なし'
+        return 'イベントなし'
     out = 'イベントリスト\n'
     for e in data:
         out += e[0].date+' '
@@ -76,7 +76,7 @@ def event_list_string(data):
 # イベントリストを文字列に変換する(id付き)
 def event_list_string_id(data):
     if len(data) == 0:
-        return 'なし'
+        return 'イベントなし'
     out = 'イベントリスト\n'
     for e in data:
         for t in e:
@@ -87,7 +87,7 @@ def event_list_string_id(data):
 # 時間割変更を文字列に変換
 def time_table_change_string(data):
     if len(data) == 0:
-        return 'なし'
+        return '時間割変更なし'
     out = '時間割変更\n'
     for e in data:
         out += e.time+' '+e.subject+'\n'
@@ -97,7 +97,7 @@ def time_table_change_string(data):
 # 時間割変更のリストを文字列に変換
 def time_table_change_list_string(data):
     if len(data) == 0:
-        return 'なし'
+        return '時間割変更なし'
     out = '時間割変更リスト\n'
     for e in data:
         out += e[0].date + ' '
@@ -113,7 +113,7 @@ def time_table_change_list_string(data):
 # 時間割変更のリストを文字列に変換
 def time_table_change_list_string_id(data):
     if len(data) == 0:
-        return 'なし'
+        return '時間割変更なし'
     out = '時間割変更\n'
     for e in data:
         for t in e:
