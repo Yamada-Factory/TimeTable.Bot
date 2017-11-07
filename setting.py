@@ -1,3 +1,7 @@
+# Server Adress
+ADDRESS_URL = ''    # Server Address
+ADDRESS_PORT =      # Server Port
+
 # DB指定(CSV) PATH指定
 TIME_TABLE = ''     # 通常時間割
 EVENT = ''          # イベント

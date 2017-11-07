@@ -186,4 +186,4 @@ signal.signal(signal.SIGINT, handler)
 line_api.push_message(setting.ID, ['起動'])
 
 # build in server
-run(host='0.0.0.0', port=4460, server=SSLWebServer, debug=True, reloader=True)
+run(host=setting.ADDRESS_URL, port=setting.ADDRESS_PORT, server=SSLWebServer, debug=True, reloader=True)

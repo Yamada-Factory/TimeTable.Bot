@@ -16,21 +16,19 @@
 ---
 
 ### Server  
-LINE MessageAPIが使えるようにhttps通信のできるServer(Portは自由)を用意してください．また，LINE公式よりLINE botのSDKをダウンロードしてください．
-
-WebControllerを利用する際はbottle.pyが使えるようにしてください．
+LINE MessageAPIが使えるようにhttps通信のできるServer(Portは自由)を用意してください．また，LINE公式よりLINE botのSDKをダウンロードしてください．また，LINEからのPOSTやWebControllerはbottle.pyで動いていますが，お好みに合わせて書き換えることも可能です．
 
 ---
 ### WebController  
 ###### はじめに
-現段階ではWebControllerはlogin機能がないため，第三者にURLを知られてしまうと改ざんされてしまう可能性があります．十分ご注意ください．
-
-###### Serverの起動
-` server.py `の最終行にport指定があります.
-
+現段階ではWebControllerはlogin機能がないため，第三者にURLを知られてしまうと改ざんされてしまう可能性があります．十分ご注意ください．  
 
 ### 初期設定  
 `setting.py` にて以下のPATHを記述してください  
+
+##### Server
+* host指定  
+* port指定  
 
 ##### SSL証明書
 * certファイル  
