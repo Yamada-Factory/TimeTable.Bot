@@ -1,5 +1,4 @@
 import re
-import time_table
 import line_api
 from string_changer import *
 from time_table import *
