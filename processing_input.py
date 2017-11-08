@@ -16,7 +16,8 @@ def processing_input(events):
 
         command_pattern = {'登録': '登録', 'register': '登録',
                            '削除': '削除', 'delete': '削除',
-                           '更新': '更新', 'update': '更新'
+                           '更新': '更新', 'update': '更新',
+                           'show': '表示'
                            }
         date_pattern = ['\d{4,4}/\d{1,2}/\d{1,2}', '昨日', '明日', '明後日', '明々後日', '来週']
         tag_pattern = {'時間割': '時間割',
