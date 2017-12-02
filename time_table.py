@@ -2,6 +2,7 @@ import csv
 import datetime
 import setting as fs
 import sqlite3
+import logging
 from data_objects import *
 
 # 与えられた日付の時間割を返す
@@ -342,6 +343,11 @@ def format_date(date):
 
 
 def access(query):
+    logger = logging.getLogger('sql')
+    f = logging.FileHandler('sql-access-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
+    f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
+    logger.addHandler(f)
+    logger.log(30, query)
     connection = sqlite3.connect(fs.SQL)
     cursor = connection.cursor()
     result = cursor.execute(query).fetchall()
