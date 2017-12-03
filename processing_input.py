@@ -1,6 +1,5 @@
 import re
 import line_api
-import setting
 from string_changer import *
 from time_table import *
 import os
@@ -17,7 +16,7 @@ def processing_input(events):
         f = logging.FileHandler('./log/line-' + datetime.datetime.today().strftime('%Y-%m') + '.log')
         f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
         line_logger.addHandler(f)
-    
+
     command_logger = logging.Logger('command')
     f = logging.FileHandler('./log/command-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
     f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
@@ -73,7 +72,7 @@ def processing_input(events):
                            '更新': '更新', 'update': '更新',
                            'show': '表示'
                            }
-        date_pattern = ['\d{4,4}/\d{1,2}/\d{1,2}','今日', '昨日', '明日', '明後日', '明々後日', '来週']
+        date_pattern = ['\d{4}/\d{1,2}/\d{1,2}','今日', '昨日', '明日', '明後日', '明々後日', '来週']
         tag_pattern = {'時間割': '時間割',
                        'time_table': '時間割',
                        '課題': '課題',
@@ -126,7 +125,7 @@ def processing_input(events):
                 event = event_string(get_event(get_date(date)))
                 
                 command_logger.log(30, '{} {} {} success'.format(flag, tag, date))
-                line_api.push_message(setting.ID, [table, task, event])
+                line_api.push_message(user_id, [table, task, event])
             return
         try:
             if flag == '表示':

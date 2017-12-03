@@ -50,7 +50,12 @@ def get_time_table(date):
     for e in change_list:
         times = e.time.split('.')
         for t in times:
-            table[week_point][int(t)-1] = e.subject
+            if e.subject in ['null', 'なし', 'None']:
+                table[week_point][int(t)-1] = ''
+            else:
+                table[week_point][int(t)-1] = e.subject
+
+
     return table[week_point]
 
 
