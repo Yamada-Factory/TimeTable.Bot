@@ -1,5 +1,5 @@
 # DB指定(CSV) PATH指定
-TIME_TABLE = ''     # 通常時間割
+TIME_TABLE = 'db/time_table.csv'     # 通常時間割
 EVENT = ''          # イベント
 TASK = ''           # 課題
 CHANGE = ''         # 時間割変更

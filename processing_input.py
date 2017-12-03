@@ -3,15 +3,23 @@ import line_api
 import setting
 from string_changer import *
 from time_table import *
+import os
 
 
 def processing_input(events):
     line_logger = logging.Logger('line_event')
-    f = logging.FileHandler('line-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
-    f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
-    line_logger.addHandler(f)
+    try:
+        f = logging.FileHandler('./log/line-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
+        f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
+        line_logger.addHandler(f)
+    except FileNotFoundError:
+        os.mkdir('log')
+        f = logging.FileHandler('./log/line-' + datetime.datetime.today().strftime('%Y-%m') + '.log')
+        f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
+        line_logger.addHandler(f)
+    
     command_logger = logging.Logger('command')
-    f = logging.FileHandler('command-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
+    f = logging.FileHandler('./log/command-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
     f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
     command_logger.addHandler(f)
     for event in events:

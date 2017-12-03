@@ -344,7 +344,7 @@ def format_date(date):
 
 def access(query):
     logger = logging.getLogger('sql')
-    f = logging.FileHandler('sql-access-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
+    f = logging.FileHandler('./log/sql-access-'+datetime.datetime.today().strftime('%Y-%m')+'.log')
     f.setFormatter(logging.Formatter('%(asctime)s: %(message)s'))
     logger.addHandler(f)
     logger.log(30, query)
