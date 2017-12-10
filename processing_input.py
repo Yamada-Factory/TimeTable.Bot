@@ -124,7 +124,7 @@ def processing_input(events):
                 task = task_string(get_task(get_date(date)))
                 event = event_string(get_event(get_date(date)))
                 
-                command_logger.log(30, '{} {} {} success'.format(flag, tag, date))
+                command_logger.log(30, '{} {} {} {} {} success'.format(user_id, group_id, flag, tag, date))
                 if group_id == '-':
                     line_api.push_message(user_id, [table, task, event])
                 else:
