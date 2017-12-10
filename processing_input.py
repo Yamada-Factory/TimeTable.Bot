@@ -125,7 +125,10 @@ def processing_input(events):
                 event = event_string(get_event(get_date(date)))
                 
                 command_logger.log(30, '{} {} {} success'.format(flag, tag, date))
-                line_api.push_message(user_id, [table, task, event])
+                if group_id == '-':
+                    line_api.push_message(user_id, [table, task, event])
+                else:
+                    line_api.push_message(group_id, [table, task, event])
             return
         try:
             if flag == '表示':
