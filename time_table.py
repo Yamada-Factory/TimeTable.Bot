@@ -51,7 +51,7 @@ def get_time_table(date):
         times = e.time.split('.')
         for t in times:
             table[week_point][int(t)-1] = e.subject
-            
+
     return table[week_point]
 
 

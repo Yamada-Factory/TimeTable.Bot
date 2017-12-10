@@ -102,12 +102,8 @@ def time_table_change_list_string(data):
     for e in data:
         out += e[0].date + ' '
         for t in e:
-            out += t.event + ' '
+            out += '{} {} '.format(t.time, t.subject)
         out += '\n'
-
-        for t in e:
-            out += '{} {} {}\n'.format(t.id, t.time, t.subject)
-
     return out
 
 # 時間割変更のリストを文字列に変換
