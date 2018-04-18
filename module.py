@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3
+# -*- coding: utf-8 -*-
 import datetime
 from time_table import *
 

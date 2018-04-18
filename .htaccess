@@ -1,0 +1,4 @@
+DirectoryIndex index.cgi
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.cgi/$1  [L]

@@ -201,5 +201,7 @@ venv.bak/
 /send_test.py
 /test.py
 /setting.py
+/six.py
+
 
 # End of https://www.gitignore.io/api/macos,python,pycharm+all

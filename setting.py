@@ -1,24 +1,16 @@
+#!/usr/local/bin/python3
+# -*- coding: utf-8 -*-
 # Server Adress
-ADDRESS_URL = ''    # Server Address
-ADDRESS_PORT =      # Server Port
+ADDRESS_URL = '0.0.0.0'    # Server Address
+ADDRESS_PORT = 80     # Server Port
 
-# DB指定(CSV) PATH指定
-TIME_TABLE = ''     # 通常時間割
-EVENT = ''          # イベント
-TASK = ''           # 課題
-CHANGE = ''         # 時間割変更
+TIME_TABLE = 'db/time_table.csv'
+SQL = 'db/bot.db'
 
-# LINE MessageAPI
-ACCESS_TOKEN = ''
-CHANNEL_SECRET = ''
-
-# SSL証明書 PATH指定
-CERT_FILE = ''
-KEY_FILE = ''
-
-
-# Option
-# 中間証明書ファイル PATH指定
-CA_FILE = ''
-# クラスグループのID
+ACCESS_TOKEN = 'おしえられないよ'
+CHANNEL_SECRET = 'もふもふ'
 ID = ''
+
+CERT_FILE = 'ssl.cert'
+KEY_FILE = 'ssl.key'
+CA_FILE = 'ca.cert'
