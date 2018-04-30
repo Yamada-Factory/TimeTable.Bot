@@ -338,13 +338,25 @@ def get_date(date_name):
 
 # 与えられた日付を 年4桁/月2桁/日2桁(str) の形式に変換する
 def format_date(date):
+    today = datetime.date.today()
     d = date.split('/')
-    month = d[1] if len(d[1]) == 2 else '0' + d[1]
-    day = d[2] if len(d[2]) == 2 else '0' + d[2]
-    date_s = '{}/{}/{}'.format(d[0], month, day)
-    if check_date(date_s):
-        return date_s
-    raise ValueError
+    if len(d) == 1:
+        if int(date) < int(today.strftime('%d')):
+            d.insert(0, str(int(today.strftime('%m'))+1))
+        else:
+            d.insert(0, today.strftime('%m'))
+    if len(d) == 2:
+        if int(d[0]) < int(today.strftime('%m')) or int(d[0]) == int(today.strftime('%m')) and int(d[1]) < int(today.strftime('%d')):
+            d.insert(0, str(int(today.strftime('%Y'))+1))
+        else:
+            d.insert(0, today.strftime('%Y'))
+    if len(d) == 3:
+        month = d[1] if len(d[1]) == 2 else '0' + d[1]
+        day = d[2] if len(d[2]) == 2 else '0' + d[2]
+        date_s = f'{d[0]}/{month}/{day}'
+        if check_date(date_s):
+            return date_s
+        raise ValueError
 
 
 def access(query):
